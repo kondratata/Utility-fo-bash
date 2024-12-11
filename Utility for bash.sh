@@ -76,10 +76,10 @@ main() {
 
   case "$action" in
     users)
-      list_users
+      get_users
       ;;
     processes)
-      list_processes
+      get_processes
       ;;
     *)
       echo "Ошибка: действие не задано" >$2
