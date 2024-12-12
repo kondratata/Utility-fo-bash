@@ -7,7 +7,7 @@ get_users(){
 
 # Вывод списка процессов
 get_processes(){
-  ps -eo pid,cmd,start --sort=pid
+  ps -Ao pid,comm,start --sort=pid
 }
 
 show_help() {
@@ -30,7 +30,7 @@ main() {
   local action=""
 
   TEMP=$(getopt -o upl:e:h --long users,processes,log:,errors:,help -n "$0" -- "$@")
-  if [[ $? -ne 0]]; then
+  if [[ $? -ne 0 ]]; then
     echo "Ошибка: неверные параметры" >$2
     exit 1
   fi
@@ -69,7 +69,7 @@ main() {
     esac
   done
 
-  if [[ -n "$error_path "]]; then
+  if [[ -n "$error_path " ]]; then
     validate_path "$error_path" || exit 1
     exec 2>"$error_path"
   fi
